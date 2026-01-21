@@ -1,0 +1,101 @@
+/* 
+    Variables (AKA CSS Custom Properties)
+
+    A variable is just a container that holds some sort of value. We usually give our variables a friendly, semantic name so that we can refer to them and use them later on in our code. All names must start with a double-hyphen (--) so that they aren't confused with already existing or language-defined values. 
+
+    We can store all sorts of values in CSS custom properties, including things that are a little long, things that aren't easy to remember, or things that we might want to change throughout our entire website later.
+
+    You must declare your variable before using them, so it's best practice to put them near the top of the stylesheet. Also remember to declare your variables in the :root of the document, else other elements may not be able to acces them (i.e. the variable may not be in scope)!
+
+    Try converting this colour palette comment into variables.
+
+    COLOUR PALETTE
+
+    red:    #b91c1c;
+    orange: #d97706;
+    yellow: #eab308;
+    green:  #16a34a;
+    blue:   #0284c7;
+    indigo: #7c3aed;
+    violet: #a21caf;
+    slate:  #334155;
+    smoke:  #e2e8f0;
+*/
+
+:root {
+    --red:    #b91c1c;
+    --orange: #d97706;
+    --yellow: #eab308;
+    --green:  #16a34a;
+    --blue:   #0284c7;
+    --indigo: #7c3aed;
+    --violet: #a21caf;
+    --slate:  #334155;
+    --smoke:  #e2e8f0;
+}
+
+/** utility classes **/
+.flex-container {
+    display: flex;
+    flex-flow: row wrap; /* shorthand: takes one value or two */
+    justify-content: center;
+}
+
+section {
+    color: #e1e1e1;
+    font-size: 2rem; /** 32px **/
+    min-width: 16rem; /** 256px **/
+    padding: 3rem; /** 48px **/
+    text-align: center;
+}
+
+/** :nth-child selector - select elements based on their positions as a child in any element. **/ 
+
+section:first-child {
+    background-color: var(--red);
+}
+
+section:last-child {
+    background-color: var(--indigo);
+}
+section:nth-child(2) {
+    background-color: var(--orange); 
+}
+section:nth-child(3) {
+    background-color: var(--yellow); 
+}
+section:nth-last-child(3) {
+    background-color: var(--green);
+}
+section:nth-last-child(2) {
+    background-color: var(--blue);
+}
+
+/** the section inside the footer element is both the first child and the last child of the parent element. It's also the only child. **/
+
+section:only-child {
+    background-color: var(--slate);
+}
+
+/** nth-of-type selectors - select elements based on their positions as a child as that type of selector.
+
+The nth type of selector will work to select our paragraph elements. If we want to grab the first pararaph in each section, they are not the first child in that section, but they are first type of paragraph **/
+
+p:first-of-type {
+    font-family: sans-serif;
+}
+
+p:last-of-type {
+    font-family: sans-serif;
+    font-size: 1rem;
+}
+
+p:nth-of-type(2) {
+   display: none;
+}
+
+/** the :has() selector allows us to make a change to a parent element based on what's inside of it (it's child). **/
+
+section:has(.special) {
+    background-color: var(--violet);
+}
